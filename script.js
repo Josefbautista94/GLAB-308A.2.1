@@ -29,3 +29,12 @@ adventurer.roll = function (mod = 0 ) {
 }
 
 adventurer.roll()
+
+//Part 2
+
+// Create a Character class with: name, health (default 100), inventory (empty array)
+
+//Add a roll() method.
+
+//Recreate Robin and companions using this class.
+
