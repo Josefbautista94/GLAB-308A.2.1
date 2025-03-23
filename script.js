@@ -1,4 +1,4 @@
-//Part 1 Humble 
+//Part 1 
 
 const adventurer = {
     name: "Robin",
@@ -56,3 +56,57 @@ robin.companion.companion.type = "Flea";
 robin.companion.companion.inventory = ["small hat", "sunglasses"];
 
 console.log(robin)
+
+
+//Part 3
+
+//Make an Adventurer class extending Character, with:
+
+//A role property
+
+//Inventory starting with “bedroll” and “50 gold coins”
+
+//A new method like scout()
+
+//Create a Companion class as a specialized version of Character.
+
+//Part 4
+
+//Add static MAX_HEALTH = 100 to Character.
+
+//Add static ROLES = ['Fighter', 'Healer', 'Wizard'] to Adventurer.
+
+//Add a check in the Adventurer constructor to make sure role is valid.
+
+//Part 5 
+
+//Make an AdventurerFactory class with:
+
+//A generate(name) method to create adventurers of a given role.
+
+//Methods like findByIndex() and findByName().
+
+//Part6
+
+//Add a duel() method to Adventurer that:
+
+//Takes another adventurer as a parameter.
+
+//Uses roll() for both.
+
+//Subtracts health from the lower roller.
+
+//Repeats until one drops to 50 health.
+
+//Logs a winner.
+
+//Part 7
+
+//Create more adventurers and companions.
+
+//Add fun roles like “Dragon” or “Elf.”
+
+//Add methods to simulate trading, exploring, or fighting.
+
+//Maybe even define classes for items or enemies.
+
