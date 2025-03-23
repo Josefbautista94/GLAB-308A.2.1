@@ -23,39 +23,39 @@ adventurer.companion.companion = {
 }
 
 //Add a method, roll(mod = 0), that simulates a 1–20 die roll with an optional modifier.
-adventurer.roll = function (mod = 0 ) {
-    const result = Math.floor(Math.random() * 20 ) + 1 + mod;
-    console.log( `${this.name} rolled a: ${result}`)
+adventurer.roll = function (mod = 0) {
+    const result = Math.floor(Math.random() * 20) + 1 + mod;
+    console.log(`${this.name} rolled a: ${result}`)
 }
 
-adventurer.roll()
+// adventurer.roll()
 
 //Part 2
 
 // Create a Character class with: name, health (default 100), inventory (empty array)
 //Add a roll() method.
 class Character {
-    constructor (name) {
-    this.name = name;
-    this.health = 100;
-    this.inventory = [];
+    constructor(name) {
+        this.name = name;
+        this.health = 100;
+        this.inventory = [];
     }
-    roll(mod = 0 ) {
-        const result = Math.floor(Math.random() * 20 ) + 1 + mod;
-        console.log( `${this.name} rolled a: ${result}`)
+    roll(mod = 0) {
+        const result = Math.floor(Math.random() * 20) + 1 + mod;
+        console.log(`${this.name} rolled a: ${result}`)
     }
 }
 //Recreate Robin and companions using this class.
 
-const robin = new Character("Robin");
-robin.inventory = ["sword", "potion", "artifact"];
-robin.companion = new Character("Leo");
-robin.companion.type = "Cat";
-robin.companion.companion = new Character("Frank");
-robin.companion.companion.type = "Flea";
-robin.companion.companion.inventory = ["small hat", "sunglasses"];
+// const robin = new Character("Robin");
+// robin.inventory = ["sword", "potion", "artifact"];
+// robin.companion = new Character("Leo");
+// robin.companion.type = "Cat";
+// robin.companion.companion = new Character("Frank");
+// robin.companion.companion.type = "Flea";
+// robin.companion.companion.inventory = ["small hat", "sunglasses"];
 
-console.log(robin)
+// console.log(robin)
 
 
 //Part 3
@@ -67,8 +67,45 @@ console.log(robin)
 //Inventory starting with “bedroll” and “50 gold coins”
 
 //A new method like scout()
+class Adventurer extends Character {
+    constructor(name, role) { // The constructor method runs automatically whenever you create a new Adventurer.
+        //It takes two arguments: name (like "Robin") and role (like "Wizard").
+
+        super(name) // calls the parent class constructor (Character) and passes in name
+        // It sets up this.name, this.health = 100, and this.inventory = [] from the Character class.
+
+        //Adventures have specialized roles
+        this.role = role;// Adds a new property role that's specific to Adventurer, like "Fighter" or "Healer".
+        // Character didn’t have this — so this line customizes the subclass.
+
+        // Every adventurer starts with a bed and 50 gold coins
+        this.inventory.push("bedroll", "50 gold coins")
+    }
+    //Adventurers have the ability to scout ahead of them.
+    scout() { // Declaring a new method called scout(), unique to Adventurer (not in the parent class)
+        console.log(`${this.name} is scouting ahead...`)
+        super.roll(); //Calls the roll() method from the Character class using super.
+
+    }
+}
 
 //Create a Companion class as a specialized version of Character.
+class Companion extends Character {
+    constructor(name, type) {
+        super(name) //  Calls parent constructor to set name, health, inventory
+
+        this.type = type; // Adds a custom property unique to Companion
+    }
+    assist() {
+        console.log(`${this.name} the ${this.type} is assisting their adventurer!`);
+    }
+}
+let robin = new Adventurer("Robin", "Healer");
+console.log(robin);
+
+let leo = new Companion("Leo", "Kitty Cat")
+leo.inventory = ["Cat Nip", "Toy Mouse", "Water bottle"]
+console.log(leo);
 
 //Part 4
 
