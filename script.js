@@ -35,9 +35,11 @@ adventurer.roll = function (mod = 0) {
 // Create a Character class with: name, health (default 100), inventory (empty array)
 //Add a roll() method.
 class Character {
+    static MAX_HEALTH = 100; // Adding static health for part 4
+
     constructor(name) {
         this.name = name;
-        this.health = 100;
+        this.health = Character.MAX_HEALTH;
         this.inventory = [];
     }
     roll(mod = 0) {
@@ -68,6 +70,7 @@ class Character {
 
 //A new method like scout()
 class Adventurer extends Character {
+    static ROLES = ["Fighter", "Healer", "Wizzard"] // Adding static roles for part 4
     constructor(name, role) { // The constructor method runs automatically whenever you create a new Adventurer.
         //It takes two arguments: name (like "Robin") and role (like "Wizard").
 
@@ -75,6 +78,10 @@ class Adventurer extends Character {
         // It sets up this.name, this.health = 100, and this.inventory = [] from the Character class.
 
         //Adventures have specialized roles
+        if (!Adventurer.ROLES.map(r => r.toLowerCase()).includes(role.toLowerCase())) {
+            // mapping through the array and putting both the input role and ROLES to toLowerCase to avoid case issues
+            throw new Error(`This isn't an existing role: ${role}, It should be one of these : ${Adventurer.ROLES}`)
+        }
         this.role = role;// Adds a new property role that's specific to Adventurer, like "Fighter" or "Healer".
         // Character didn’t have this — so this line customizes the subclass.
 
@@ -109,11 +116,13 @@ console.log(leo);
 
 //Part 4
 
-//Add static MAX_HEALTH = 100 to Character.
+//Add static MAX_HEALTH = 100 to Character. ✅
 
-//Add static ROLES = ['Fighter', 'Healer', 'Wizard'] to Adventurer.
+//Add static ROLES = ['Fighter', 'Healer', 'Wizard'] to Adventurer. ✅
 
-//Add a check in the Adventurer constructor to make sure role is valid.
+//Add a check in the Adventurer constructor to make sure role is valid. ✅
+
+//Completed all above!
 
 //Part 5 
 
