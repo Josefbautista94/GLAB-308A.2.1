@@ -45,6 +45,7 @@ class Character {
     roll(mod = 0) {
         const result = Math.floor(Math.random() * 20) + 1 + mod;
         console.log(`${this.name} rolled a: ${result}`)
+        return result;
     }
 }
 //Recreate Robin and companions using this class.
@@ -92,7 +93,27 @@ class Adventurer extends Character {
     scout() { // Declaring a new method called scout(), unique to Adventurer (not in the parent class)
         console.log(`${this.name} is scouting ahead...`)
         super.roll(); //Calls the roll() method from the Character class using super.
+    }
+    duel(otherAdventurer) {
+        while (this.health > 50 && otherAdventurer.health > 50) { // While boths health is above 50 the duel is valid
+            const myRoll = this.roll() // our adventurers roll
+            const othersRoll = otherAdventurer.roll() // the others roll
 
+            if (myRoll > othersRoll) { // if my roll is higher we get a hit in and deduct their health
+                otherAdventurer.health -= 1;
+                console.log(`${this.name} got a good hit in! ${otherAdventurer.name}'s current health is :${otherAdventurer.health}`)
+            }
+            else if (othersRoll > myRoll) { // if i get a bad roll
+                this.health -= 1;
+                console.log(`${otherAdventurer.name} got a good hit on ${this.name}, current health is ${this.health}`)
+            }
+            else {
+                console.log(`It's a draw! No damage take this round.`)
+            }
+
+        }
+        const winner = this.health > 50 ? this.name : otherAdventurer.name; // first adventurer to go below 50 looses
+        console.log(`${winner} is the winnner of this duel!`)
     }
 }
 
@@ -156,17 +177,18 @@ console.log(robin)
 
 //Part6
 
-//Add a duel() method to Adventurer that:
+//Add a duel() method to Adventurer that: 
 
-//Takes another adventurer as a parameter.
+//Takes another adventurer as a parameter.✅
 
-//Uses roll() for both.
+//Uses roll() for both.✅
 
-//Subtracts health from the lower roller.
+//Subtracts health from the lower roller.✅
 
-//Repeats until one drops to 50 health.
+//Repeats until one drops to 50 health.✅
 
-//Logs a winner.
+//Logs a winner.✅
+
 
 //Part 7
 
