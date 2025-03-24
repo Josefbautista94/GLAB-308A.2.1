@@ -107,8 +107,8 @@ class Companion extends Character {
         console.log(`${this.name} the ${this.type} is assisting their adventurer!`);
     }
 }
-let robin = new Adventurer("Robin", "Healer");
-console.log(robin);
+// let robin = new Adventurer("Robin", "Healer");
+// console.log(robin);
 
 let leo = new Companion("Leo", "Kitty Cat")
 leo.inventory = ["Cat Nip", "Toy Mouse", "Water bottle"]
@@ -131,6 +131,28 @@ console.log(leo);
 //A generate(name) method to create adventurers of a given role.
 
 //Methods like findByIndex() and findByName().
+
+class AdventurerFactory {
+    constructor(role) { // constructor takes a single role like "Healer" or "Fighter".
+        this.role = role;
+        this.adventurers = []; //It saves that role and initializes an empty array
+    }
+    generate(name) { //  creates a new adventurer using the provided name and the role stored in the factory.
+        const newAdventurer = new Adventurer(name, this.role);
+        this.adventurers.push(newAdventurer) //adds the new adventurer to the internal adventurers array.
+        return newAdventurer;
+    }
+    findByIndex(index) {// Lets you find an adventurer by their index in the array.
+        return this.adventurers[index]
+    }
+    findByName(name) {
+        return this.adventurers.find((f) => f.name === name) // Using .find() to return the first adventurer with a matching name.
+    }
+}
+const healers = new AdventurerFactory("Healer");
+const robin = healers.generate("Robin")
+
+console.log(robin)
 
 //Part6
 
