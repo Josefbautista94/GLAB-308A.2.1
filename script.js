@@ -71,7 +71,7 @@ class Character {
 
 //A new method like scout()
 class Adventurer extends Character {
-    static ROLES = ["Fighter", "Healer", "Wizzard"] // Adding static roles for part 4
+    static ROLES = ["Fighter", "Healer", "Wizzard", "Bum", "Merchant", "Elf"] // Adding static roles for part 4
     constructor(name, role) { // The constructor method runs automatically whenever you create a new Adventurer.
         //It takes two arguments: name (like "Robin") and role (like "Wizard").
 
@@ -131,9 +131,7 @@ class Companion extends Character {
 // let robin = new Adventurer("Robin", "Healer");
 // console.log(robin);
 
-let leo = new Companion("Leo", "Kitty Cat")
-leo.inventory = ["Cat Nip", "Toy Mouse", "Water bottle"]
-console.log(leo);
+
 
 //Part 4
 
@@ -167,7 +165,7 @@ class AdventurerFactory {
         return this.adventurers[index]
     }
     findByName(name) {
-        return this.adventurers.find((f) => f.name === name) // Using .find() to return the first adventurer with a matching name.
+        return this.adventurers.find((f) => f.name.toLowerCase() === name.toLowerCase()) // Using .find() to return the first adventurer with a matching name.
     }
 }
 const healers = new AdventurerFactory("Healer");
@@ -193,8 +191,23 @@ console.log(robin)
 //Part 7
 
 //Create more adventurers and companions.
-
 //Add fun roles like “Dragon” or “Elf.”
+const bum = new AdventurerFactory("Bum");
+const merchant = new AdventurerFactory("Merchant");
+const elf = new AdventurerFactory("Elf");
+
+const patrick = bum.generate("Patrick")
+patrick.companion = new Companion("Hector", "Sewer Rat")
+
+const franky = merchant.generate("Frank")
+franky.companion= new Companion("Chopper", "Reindeer")
+
+const saria = elf.generate("Saria")
+saria.companion= new Companion("Link", "Wolf")
+
+console.log(patrick)
+console.log(franky)
+console.log(saria)
 
 //Add methods to simulate trading, exploring, or fighting.
 
