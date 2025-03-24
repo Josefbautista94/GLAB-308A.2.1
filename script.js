@@ -200,16 +200,52 @@ const patrick = bum.generate("Patrick")
 patrick.companion = new Companion("Hector", "Sewer Rat")
 
 const franky = merchant.generate("Frank")
-franky.companion= new Companion("Chopper", "Reindeer")
+franky.companion = new Companion("Chopper", "Reindeer")
 
 const saria = elf.generate("Saria")
-saria.companion= new Companion("Link", "Wolf")
+saria.companion = new Companion("Link", "Wolf")
 
 console.log(patrick)
 console.log(franky)
 console.log(saria)
 
 //Add methods to simulate trading, exploring, or fighting.
+patrick.duel(saria)
 
 //Maybe even define classes for items or enemies.
+class Enemy extends Character {
+    constructor(name, type) {
+        super(name);
+        this.type = type;
+    }
+    dialouge() {
+        let arrOfDialouge = ["wants to start some trouble!",
+            "is looking for a fight!",
+            "emerges from the shadows!",
+            "snarls with fury!",
+            "lets out a chilling scream!",
+            "says, 'You dare challenge me?'",
+            "growls, 'This is my territory!'",
+            "bares its teeth menacingly!",
+            "says, 'You're in the wrong forest, friend.'",
+            "slams the ground with rage!",
+            "glares with burning eyes!",
+            "hisses, 'I'll make this quick.'",
+            "growls low... something’s coming.",
+            "says, 'I've been waiting for this.'",
+            "laughs maniacally.",
+            "says, 'Prepare to meet your doom!'",
+            "roars into the sky!",
+            "licks its lips, ready to pounce.",
+            "shakes the earth with every step.",
+            "chuckles, 'This will be fun.'"]
+        let randomQuote = arrOfDialouge[Math.floor(Math.random() * arrOfDialouge.length)]
+        console.log(`${this.name} the ${this.type} ${randomQuote}`)
+    }
+}
 
+let henry = new Enemy("Henry", "Ghost");
+henry.dialouge();
+
+let marvin = new Enemy("Marvin", "Alien");
+marvin.dialouge();
